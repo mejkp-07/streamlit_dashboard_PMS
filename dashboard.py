@@ -20,7 +20,7 @@ st.set_page_config(
 
 alt.themes.enable("dark")
 
-df = pd.read_csv("/content/PMS (2).csv")
+df = pd.read_csv("PMS (2).csv")
 usecols=['Group Name','Duration','Received Project','str_category_name']
 
 #sidebar
@@ -214,5 +214,4 @@ with col[0]:
 #             - :orange[**States Migration**]: percentage of states with annual inbound/ outbound migration > 50,000
 #             ''')
 
-!pip install -q streamlit
 
