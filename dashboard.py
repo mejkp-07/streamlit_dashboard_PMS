@@ -179,7 +179,7 @@ col = st.columns((1.5, 4.5, 2), gap='medium')
 
 with col[0]:
     st.markdown("#### Total")
-    horizon = horizon_graph(df, 'Group Name', 'Duration', 'Group Name',selected_color_theme )
+    horizon = horizon_graph(df, 'str_category_', 'Duration', 'str_category_name',selected_color_theme )
     st.altair_chart(horizon, use_container_width=True)
     heatmap = make_heatmap(df, 'Group Name', 'Received Project', 'Group Name',selected_color_theme)
 
