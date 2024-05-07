@@ -18,10 +18,10 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-alt.themes.enable("dark")
+# alt.themes.enable("dark")
 
 df = pd.read_csv('PMS (2).csv')
-usecols=['Group Name','Duration','Received Project','str_category_name']
+# usecols=['Group Name','Duration','Received Project','str_category_name']
 
 #sidebar
 with st.sidebar:
