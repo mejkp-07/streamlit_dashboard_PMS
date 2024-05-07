@@ -17,8 +17,9 @@ st.set_page_config(
     layout = "wide",
     initial_sidebar_state="expanded"
 )
-
 alt.themes.enable("dark")
+
+
 
 df = pd.read_csv("PMS (2).csv")
 usecols=['Group Name','Duration','Received Project','str_category_name']
@@ -36,7 +37,8 @@ with st.sidebar:
 
 # Heatmap
 def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
-    heatmap = alt.Chart(input_df).mark_rect().encode(
+    df_counts = input_df.groupby([input_y, input_x]).size().reset_index(name='count')
+    heatmap = alt.Chart(df_counts).mark_rect().encode(
             y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="received project ", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
             x=alt.X(f'{input_x}:O', axis=alt.Axis(title="department", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
             color=alt.Color(f'max({input_color}):Q',
@@ -179,9 +181,9 @@ col = st.columns((1.5, 4.5, 2), gap='medium')
 
 with col[0]:
     st.markdown("#### Total")
-    horizon = horizon_graph(df, "Group Name", "Duration", 'Group Name',selected_color_theme )
+    horizon = horizon_graph(df, 'Group Name', 'Duration', 'Group Name',selected_color_theme )
     st.altair_chart(horizon, use_container_width=True)
-    heatmap = make_heatmap(df, "Group Name", "Received Project", 'Group Name',selected_color_theme)
+    heatmap = make_heatmap(df, 'Received Project', 'Group Name', 'Group Name',selected_color_theme)
 
 
     st.altair_chart(heatmap, use_container_width=True)
