@@ -20,7 +20,7 @@ st.set_page_config(
 
 alt.themes.enable("dark")
 
-df = pd.read_csv("/content/PMS (2).csv")
+df = pd.read_csv('PMS (2).csv')
 usecols=['Group Name','Duration','Received Project','str_category_name']
 
 #sidebar
@@ -179,9 +179,9 @@ col = st.columns((1.5, 4.5, 2), gap='medium')
 
 with col[0]:
     st.markdown("#### Total")
-    horizon = horizon_graph(df, "Group Name", "Duration", 'Group Name',selected_color_theme )
+    horizon = horizon_graph(df, 'Group Name', 'Duration', 'Group Name',selected_color_theme )
     st.altair_chart(horizon, use_container_width=True)
-    heatmap = make_heatmap(df, "Group Name", "Received Project", 'Group Name',selected_color_theme)
+    heatmap = make_heatmap(df, 'Group Name', 'Received Project', 'Group Name',selected_color_theme)
 
 
     st.altair_chart(heatmap, use_container_width=True)
@@ -214,5 +214,4 @@ with col[0]:
 #             - :orange[**States Migration**]: percentage of states with annual inbound/ outbound migration > 50,000
 #             ''')
 
-!pip install -q streamlit
 
