@@ -19,8 +19,6 @@ st.set_page_config(
 )
 alt.themes.enable("dark")
 
-
-
 df = pd.read_csv("PMS (2).csv")
 usecols=['Group Name','Duration','Received Project','str_category_name']
 
