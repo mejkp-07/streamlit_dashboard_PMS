@@ -56,12 +56,12 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
     return heatmap
 
 def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
-  df_counts = input_df.groupby([input_y, input_x]).size().reset_index(name='count')
-  horizon = alt.Chart(df_counts).mark_area(
+  
+  horizon = alt.Chart(input_df).mark_area(
       clip = True,
       opacity = 0.6,
   ).encode(
-      y=alt.Y(f'{input_y}:Q',axis = alt.Axis(title =" ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0,sort='ascending')),
+      y=alt.Y(f'{input_y}:Q',axis = alt.Axis(title =" ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
       x=alt.X(f'{input_x}:N',axis = alt.Axis(title =" ",titleFontSize=18, titlePadding=15, titleFontWeight=900)),
       color = alt.Color(f'{input_color}:N',
                         legend =None,
