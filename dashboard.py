@@ -189,7 +189,7 @@ with col[0]:
 
 
 
- with col[1]:
+ # with col[1]:
 #     st.markdown('#### Top States')
 
 #     st.dataframe(df_selected_year_sorted,
