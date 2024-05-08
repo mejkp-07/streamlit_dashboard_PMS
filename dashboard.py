@@ -40,7 +40,7 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
     df_counts = input_df.groupby([input_y, input_x]).size().reset_index(name='count')
     heatmap = alt.Chart(df_counts).mark_rect().encode(
             y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="received project ", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
-            x=alt.X(f'{input_x}:O', axis=alt.Axis(title=" ", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
+            x=alt.X(f'{input_x}:O', axis=alt.Axis(title=" ", titleFontSize=18, titlePadding=15, titleFontWeight=900,labelAngle=0)),
             color=alt.Color(f'max({input_color}):Q',
                              legend=None,
                              scale=alt.Scale(scheme=input_color_theme)),
@@ -61,8 +61,8 @@ def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
       interpolate = 'monotone',
       opacity = 0.6,
   ).encode(
-      y=alt.Y(f'{input_y}:O',axis = alt.Axis(title =" ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
-      x=alt.X(f'{input_x}:O',axis = alt.Axis(title ="dora",titleFontSize=18, titlePadding=15, titleFontWeight=900,labelAngle=0)),
+      y=alt.Y('Duration:Q',axis = alt.Axis(title =" ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
+      x=alt.X('Group Name:N',axis = alt.Axis(title ="dora",titleFontSize=18, titlePadding=15, titleFontWeight=900,labelAngle=0)),
       color = alt.Color(input_color,
                         legend =None,
                         scale= alt.Scale(scheme= input_color_theme)),
@@ -188,7 +188,6 @@ with col[0]:
 
 
     st.altair_chart(heatmap, use_container_width=True)
-    
 
 
 
