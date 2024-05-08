@@ -55,17 +55,18 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
      
     return heatmap
 
-def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
+def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
     df_grouped = input_df.groupby(input_x)['Received Project'].sum().reset_index(name='Total Projects')
   
-    horizon = alt.Chart(df_grouped).mark_area(
-      opacity = 0.6,
+    horizon = alt.Chart(df_grouped).mark_circle(
+      size = 80,
   ).encode(
-      y=alt.Y(f'{input_y}:N',axis = alt.Axis(title ="  ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
-      x=alt.X(f'{input_x}:N',axis = alt.Axis(title =" ",titleFontSize=18, titlePadding=15, titleFontWeight=900)),
+      y=alt.Y(f'{input_y}',axis = alt.Axis(title ="  ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
+      x=alt.X(f'{input_x}',axis = alt.Axis(title =" ",titleFontSize=18, titlePadding=15, titleFontWeight=900)),
       color = alt.Color(f'{input_color}:N',
                         legend =None,
                         scale= alt.Scale(scheme= input_color_theme)),
+      tootltip =['Group Name, 'Duration','Received Project']
 
 
       ).properties(
@@ -74,7 +75,7 @@ def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
       ).configure_axis(
           labelFontSize=12,
           titleFontSize=12
-      )
+      ).interactive()
 
     return horizon
 
@@ -182,8 +183,8 @@ col = st.columns((1.5, 2.5, 2), gap='medium')
 
 with col[1]:
     st.markdown("#### Total")
-    horizon = horizon_graph(df_data, 'Group Name', 'Duration', 'Group Name',selected_color_theme )
-    st.altair_chart(horizon, use_container_width=True)
+    scatter = scatterplot(df_data, 'Group Name', 'Duration', 'Group Name',selected_color_theme )
+    st.altair_chart(scatter, use_container_width=True)
     
     heatmap = make_heatmap(df_data,'str_category_name','Group Name', 'Group Name',selected_color_theme)
 
