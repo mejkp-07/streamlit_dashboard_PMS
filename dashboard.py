@@ -70,14 +70,14 @@ def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
 
 
       ).properties(
-          width = 900,
+          width = 1100,
           # height = 90
       ).configure_axis(
           labelFontSize=12,
           titleFontSize=12
       )
 
-  return horizon
+    return horizon
 
 # #Donut chart
 # def donut_chart(input_response,input_text,input_color):
