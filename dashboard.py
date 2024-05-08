@@ -26,9 +26,9 @@ data_df = pd.read_csv('PMS (2).csv')
 #sidebar
 with st.sidebar:
   st.title('PMS analytics dashboard ')
-  year_list= st.selectbox('Select the duartion',df['Duration'].unique())
-  receival =  st.selectbox('Reveival of project',df['Received Project'].unique())
-  group_name = st.selectbox('Select the department',df['Group Name'].unique())
+  year_list= st.selectbox('Select the duartion',data_df['Duration'].unique())
+  receival =  st.selectbox('Reveival of project',data_df['Received Project'].unique())
+  group_name = st.selectbox('Select the department',data_df['Group Name'].unique())
   color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
   selected_color_theme = st.selectbox('Select a color theme', color_theme_list)
 
