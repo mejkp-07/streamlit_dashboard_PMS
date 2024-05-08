@@ -62,8 +62,8 @@ def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
       clip = True,
       opacity = 0.6,
   ).encode(
-      y=alt.Y(f'{input_y}:O',axis = alt.Axis(title =" ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
-      x=alt.X(f'{input_x}:O',axis = alt.Axis(title =" ",titleFontSize=18, titlePadding=15, titleFontWeight=900)),
+      y=alt.Y(f'Total Projects:Q',axis = alt.Axis(title =" ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
+      x=alt.X(f'{input_x}:N',axis = alt.Axis(title =" ",titleFontSize=18, titlePadding=15, titleFontWeight=900)),
       color = alt.Color(f'{input_color}:O',
                         legend =None,
                         scale= alt.Scale(scheme= input_color_theme)),
@@ -183,13 +183,9 @@ col = st.columns((1.5, 2.5, 2), gap='medium')
 
 with col[1]:
     st.markdown("#### Total")
-    horizon = horizon_graph(df_data, 'Group Name', 'Total Projects', 'Group Name',selected_color_theme )
-    # st.altair_chart(horizon, use_container_width=True)
-    alt.Chart(df_data).mark_bar().encode(
-    x='Group Name',
-    y='Total Projects'
-)
+    horizon = horizon_graph(df_data, 'Group Name', 'Duration', 'Group Name',selected_color_theme )
     st.altair_chart(horizon, use_container_width=True)
+    
     heatmap = make_heatmap(df_data,'str_category_name','Group Name', 'Group Name',selected_color_theme)
 
 
