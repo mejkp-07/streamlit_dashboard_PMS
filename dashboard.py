@@ -66,8 +66,8 @@ def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
 
 
       ).properties(
-          width = 200,
-          height = 30
+          width = 900,
+          height = 90
       ).configure_axis(
           labelFontSize=12,
           titleFontSize=12
