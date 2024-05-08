@@ -21,6 +21,7 @@ st.set_page_config(
 # alt.themes.enable("dark")
 
 df_data = pd.read_csv('PMS (2).csv')
+st.write(Dataset,df_data)
 # usecols=['Group Name','Duration','Received Project','str_category_name']
 
 #sidebar
@@ -186,6 +187,7 @@ with col[0]:
 
 
     st.altair_chart(heatmap, use_container_width=True)
+    st
 
 
 
