@@ -188,7 +188,7 @@ with col[0]:
 
 
 
-# with col[2]:
+ with col[1]:
 #     st.markdown('#### Top States')
 
 #     st.dataframe(df_selected_year_sorted,
@@ -207,11 +207,11 @@ with col[0]:
 #                      )}
 #                  )
 
-#     with st.expander('About', expanded=True):
-#         st.write('''
-#             - Data: [U.S. Census Bureau](https://www.census.gov/data/datasets/time-series/demo/popest/2010s-state-total.html).
-#             - :orange[**Gains/Losses**]: states with high inbound/ outbound migration for selected year
-#             - :orange[**States Migration**]: percentage of states with annual inbound/ outbound migration > 50,000
-#             ''')
+    with st.expander('About', expanded=True):
+        st.write('''
+            - Data: [U.S. Census Bureau](https://www.census.gov/data/datasets/time-series/demo/popest/2010s-state-total.html).
+            - :orange[**Gains/Losses**]: states with high inbound/ outbound migration for selected year
+            - :orange[**States Migration**]: percentage of states with annual inbound/ outbound migration > 50,000
+            ''')
 
 
