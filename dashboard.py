@@ -21,7 +21,7 @@ st.set_page_config(
 # alt.themes.enable("dark")
 
 df_data = pd.read_csv('PMS (2).csv')
-st.write(Dataset,df_data)
+st.write("Dataset",df_data)
 # usecols=['Group Name','Duration','Received Project','str_category_name']
 
 #sidebar
