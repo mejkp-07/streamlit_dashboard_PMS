@@ -66,7 +66,7 @@ def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
       color = alt.Color(f'{input_color}:N',
                         legend =None,
                         scale= alt.Scale(scheme= input_color_theme)),
-      tootltip =['Group Name, 'Duration','Received Project']
+      tooltip =['Group Name,'Duration','Received Project']
 
 
       ).properties(
