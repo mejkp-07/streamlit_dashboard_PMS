@@ -62,7 +62,7 @@ def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
       clip = True,
       opacity = 0.6,
   ).encode(
-      y=alt.Y(f'{input_y}:O',axis = alt.Axis(title =" ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
+      y=alt.Y(f'Total Projects:O',axis = alt.Axis(title =" Total Projects ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
       x=alt.X(f'{input_x}:O',axis = alt.Axis(title =" ",titleFontSize=18, titlePadding=15, titleFontWeight=900)),
       color = alt.Color(f'{input_color}:O',
                         legend =None,
