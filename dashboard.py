@@ -61,8 +61,8 @@ def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
       interpolate = 'monotone',
       opacity = 0.6,
   ).encode(
-      y=alt.Y(f'{input_y}:Q',axis = alt.Axis(title =" ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
-      x=alt.X(f'{input_x}:N',axis = alt.Axis(title ="dora",titleFontSize=18, titlePadding=15, titleFontWeight=900,labelAngle=0)),
+      y=alt.Y(f'{input_y}:O',axis = alt.Axis(title =" ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
+      x=alt.X(f'{input_x}:O',axis = alt.Axis(title =" ",titleFontSize=18, titlePadding=15, titleFontWeight=900,labelAngle=0)),
       color = alt.Color(f'{input_color}:N',
                         legend =None,
                         scale= alt.Scale(scheme= input_color_theme)),
@@ -70,7 +70,7 @@ def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
 
       ).properties(
           width = 900,
-          height = 90
+          # height = 90
       ).configure_axis(
           labelFontSize=12,
           titleFontSize=12
