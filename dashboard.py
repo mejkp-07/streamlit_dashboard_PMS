@@ -20,15 +20,15 @@ st.set_page_config(
 
 # alt.themes.enable("dark")
 
-data_df = pd.read_csv('PMS (2).csv')
+df_data = pd.read_csv('PMS (2).csv')
 # usecols=['Group Name','Duration','Received Project','str_category_name']
 
 #sidebar
 with st.sidebar:
   st.title('PMS analytics dashboard ')
-  year_list= st.selectbox('Select the duartion',data_df['Duration'].unique())
-  receival =  st.selectbox('Reveival of project',data_df['Received Project'].unique())
-  group_name = st.selectbox('Select the department',data_df['Group Name'].unique())
+  year_list= st.selectbox('Select the duartion',df_data['Duration'].unique())
+  receival =  st.selectbox('Reveival of project',df_data['Received Project'].unique())
+  group_name = st.selectbox('Select the department',df_data['Group Name'].unique())
   color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
   selected_color_theme = st.selectbox('Select a color theme', color_theme_list)
 
@@ -38,7 +38,7 @@ with st.sidebar:
 def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
     heatmap = alt.Chart(input_df).mark_rect().encode(
             y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="received project ", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
-            x=alt.X(f'{input_x}:O', axis=alt.Axis(title="department", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
+            x=alt.X(f'{input_x}:O', axis=alt.Axis(title=" ", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
             color=alt.Color(f'max({input_color}):Q',
                              legend=None,
                              scale=alt.Scale(scheme=input_color_theme)),
@@ -58,7 +58,7 @@ def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
       interpolate = 'monotone',
       opacity = 0.6,
   ).encode(
-      y=alt.Y(f'{input_y}:O',axis = alt.Axis(title ="departments ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
+      y=alt.Y(f'{input_y}:O',axis = alt.Axis(title =" ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
       x=alt.X(f'{input_x}:O',axis = alt.Axis(title ="dora",titleFontSize=18, titlePadding=15, titleFontWeight=900,labelAngle=0)),
       color = alt.Color(input_color,
                         legend =None,
@@ -179,9 +179,9 @@ col = st.columns((1.5, 2.5, 2), gap='medium')
 
 with col[0]:
     st.markdown("#### Total")
-    horizon = horizon_graph(data_df, 'str_category_name', 'Duration', 'Group Name',selected_color_theme )
+    horizon = horizon_graph(df_data, 'str_category_name', 'Duration', 'Group Name',selected_color_theme )
     st.altair_chart(horizon, use_container_width=True)
-    heatmap = make_heatmap(data_df, 'Group Name', 'Received Project', 'Group Name',selected_color_theme)
+    heatmap = make_heatmap(df_data, 'Group Name', 'Received Project', 'Group Name',selected_color_theme)
 
 
     st.altair_chart(heatmap, use_container_width=True)
