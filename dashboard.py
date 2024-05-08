@@ -20,7 +20,7 @@ st.set_page_config(
 
 # alt.themes.enable("dark")
 
-df = pd.read_csv('PMS (2).csv')
+data_df = pd.read_csv('PMS (2).csv')
 # usecols=['Group Name','Duration','Received Project','str_category_name']
 
 #sidebar
@@ -179,9 +179,9 @@ col = st.columns((1.5, 2.5, 2), gap='medium')
 
 with col[0]:
     st.markdown("#### Total")
-    horizon = horizon_graph(df, 'str_category_name', 'Duration', 'Group Name',selected_color_theme )
+    horizon = horizon_graph(data_df, 'str_category_name', 'Duration', 'Group Name',selected_color_theme )
     st.altair_chart(horizon, use_container_width=True)
-    heatmap = make_heatmap(df, 'Group Name', 'Received Project', 'Group Name',selected_color_theme)
+    heatmap = make_heatmap(data_df, 'Group Name', 'Received Project', 'Group Name',selected_color_theme)
 
 
     st.altair_chart(heatmap, use_container_width=True)
