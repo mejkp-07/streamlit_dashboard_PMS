@@ -56,7 +56,7 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
     return heatmap
 
 def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
-    df_grouped = input_df.groupby(input_x)['Received Project'].sum().reset_index(name='Total Projects)
+    df_grouped = input_df.groupby(input_x)['Received Project'].sum().reset_index(name='Total Projects')
   
     horizon = alt.Chart(df_grouped).mark_area(
       opacity = 0.6,
