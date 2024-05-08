@@ -56,8 +56,8 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
     return heatmap
 
 def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
-  
-  horizon = alt.Chart(input_df).mark_area(
+  df_counts = input_df.groupby([input_y, input_x]).size().reset_index(name='count')
+  horizon = alt.Chart(df_counts).mark_area(
       clip = True,
       opacity = 0.6,
   ).encode(
