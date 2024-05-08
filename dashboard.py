@@ -120,7 +120,7 @@ def horizon_graph(input_df, input_x, input_y,input_color, input_color_theme):
 #   selected_year_data['population_difference'] = selected_year_data.population.sub(previous_year_data.population, fill_value=0)
 #   return pd.concat([selected_year_data.states, selected_year_data.id, selected_year_data.population, selected_year_data.population_difference], axis=1).sort_values(by="population_difference", ascending=False)
 
-col = st.columns((4.5, 5.5, 2), gap='medium')
+col = st.columns((1.5, 2.5, 2), gap='medium')
 
 # with col[0]:
 #     st.markdown('#### Gains/Losses')
