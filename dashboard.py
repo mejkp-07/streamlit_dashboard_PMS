@@ -93,6 +93,7 @@ def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
 
 #Donut chart
 def donut_chart(input_response,input_text,input_color):
+    
   if input_color == 'blue':
     chart_color = ['#29b5e8','#155F7A']
   if input_color == 'green':
@@ -130,7 +131,8 @@ def donut_chart(input_response,input_text,input_color):
   ).properties(width=130, height=130)
   return plot_bg + plot + text
 
-def sales_donut(input_data):
+
+ def sales_donut(input_data):
    
     
     filtered_data = input_data if department_filter == 'All' else [input_data['Group Name'] == department_filter]
@@ -139,7 +141,7 @@ def sales_donut(input_data):
     yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
     conversion_rate = (yes_projects / total_projects) * 100 if total_projects > 0 else 0
 
-    return make_donut(conversion_rate, 'Conversion Rate', 'blue')
+    return donut_chart(conversion_rate, 'Conversion Rate', 'blue')
 
 # def calculate_population_difference(input_df, input_year):
 #   selected_year_data = input_df[input_df['year'] == input_year].reset_index()
