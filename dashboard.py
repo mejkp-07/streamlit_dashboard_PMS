@@ -183,7 +183,7 @@ col = st.columns((1.5, 2.5, 2), gap='medium')
 
 with col[1]:
     st.markdown("#### Total")
-    scatter = scatterplot(df_data, 'Group Name', 'Duration', 'Group Name',selected_color_theme )
+    scatter = scatterplot(df_data, 'Group Name', 'CDAC Outlay', 'Group Name',selected_color_theme )
     st.altair_chart(scatter, use_container_width=True)
     
     heatmap = make_heatmap(df_data,'str_category_name','Group Name', 'Group Name',selected_color_theme)
