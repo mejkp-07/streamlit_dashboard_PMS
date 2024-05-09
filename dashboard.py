@@ -46,13 +46,13 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
                              scale=alt.Scale(scheme=input_color_theme)),
             stroke=alt.value('black'),
             strokeWidth=alt.value(0.25),
-     tooltip=['Group Name','Funding Organisation']
+     
         ).properties(width= 1200,
                       # height=30
         ).configure_axis(
         labelFontSize=12,
         titleFontSize=12
-        ).interactive()
+        )
      
     return heatmap
 
@@ -67,7 +67,7 @@ def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
       color = alt.Color(f'{input_color}:N',
                         legend =None,
                         scale= alt.Scale(scheme= input_color_theme)),
-    
+     tooltip=['Group Name','Received Project','Duration','Funding Organisation']
 
 
       ).properties(
@@ -76,7 +76,7 @@ def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
       ).configure_axis(
           labelFontSize=12,
           titleFontSize=12
-      )
+      ).interactive()
 
     return horizon
 
