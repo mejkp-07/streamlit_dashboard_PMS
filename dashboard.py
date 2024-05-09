@@ -31,6 +31,8 @@ with st.sidebar:
   receival =  st.selectbox('Reveival of project',df_data['Received Project'].unique())
   group_name = st.selectbox('Select the department',df_data['Group Name'].unique())
   # selected_department = st.sidebar.selectbox('Select Department', ['Overall'] + df_data['Group Name'].unique())
+  department_filter = st.sidebar.selectbox('Select Department', ['All'] + list(df_data['Group Name'].unique()))
+
 
   color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
   selected_color_theme = st.selectbox('Select a color theme', color_theme_list)
@@ -89,44 +91,55 @@ def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
 
     return horizon
 
-# #Donut chart
-# def donut_chart(input_response,input_text,input_color):
-#   if input_color == 'blue':
-#     chart_color = ['#29b5e8','#155F7A']
-#   if input_color == 'green':
-#     chart_color = ['#27AE60','#12783D']
-#   if chart_color == 'orange':
-#     chart_color = ['#F39C12','#875A12']
-#   if input_color == 'red':
-#     chart_color = ['#E743C','#781F16']
+#Donut chart
+def donut_chart(input_response,input_text,input_color):
+  if input_color == 'blue':
+    chart_color = ['#29b5e8','#155F7A']
+  if input_color == 'green':
+    chart_color = ['#27AE60','#12783D']
+  if chart_color == 'orange':
+    chart_color = ['#F39C12','#875A12']
+  if input_color == 'red':
+    chart_color = ['#E743C','#781F16']
 
-#   source = pd.DataFrame({
-#       "Topic":['',input_text],
-#       "% value":[100-input_response,input_response]
-#   })
+  source = pd.DataFrame({
+      "Topic":['',input_text],
+      "% value":[100-input_response,input_response]
+  })
 
-#   plot = alt.Chart(source).mark_arc(innerRadius=45, cornerRadius=25).encode(
-#       theta="% value",
-#       color= alt.Color("Topic:N",
-#                       scale=alt.Scale(
-#                           #domain=['A', 'B'],
-#                           domain=[input_text, ''],
-#                           # range=['#29b5e8', '#155F7A']),  # 31333F
-#                           range=chart_color),
-#                       legend=None),
-#   ).properties(width=130, height=130)
+  plot = alt.Chart(source).mark_arc(innerRadius=45, cornerRadius=25).encode(
+      theta="% value",
+      color= alt.Color("Topic:N",
+                      scale=alt.Scale(
+                          #domain=['A', 'B'],
+                          domain=[input_text, ''],
+                          # range=['#29b5e8', '#155F7A']),  # 31333F
+                          range=chart_color),
+                      legend=None),
+  ).properties(width=130, height=130)
 
-#   text = plot.mark_text(align='center', color="#29b5e8", font="Lato", fontSize=32, fontWeight=700, fontStyle="italic").encode(text=alt.value(f'{input_response} %'))
-#   plot_bg = alt.Chart(source_bg).mark_arc(innerRadius=45, cornerRadius=20).encode(
-#       theta="% value",
-#       color= alt.Color("Topic:N",
-#                       scale=alt.Scale(
-#                           # domain=['A', 'B'],
-#                           domain=[input_text, ''],
-#                           range=chart_color),  # 31333F
-#                       legend=None),
-#   ).properties(width=130, height=130)
-#   return plot_bg + plot + text
+  text = plot.mark_text(align='center', color="#29b5e8", font="Lato", fontSize=32, fontWeight=700, fontStyle="italic").encode(text=alt.value(f'{input_response} %'))
+  plot_bg = alt.Chart(source_bg).mark_arc(innerRadius=45, cornerRadius=20).encode(
+      theta="% value",
+      color= alt.Color("Topic:N",
+                      scale=alt.Scale(
+                          # domain=['A', 'B'],
+                          domain=[input_text, ''],
+                          range=chart_color),  # 31333F
+                      legend=None),
+  ).properties(width=130, height=130)
+  return plot_bg + plot + text
+
+def sales_donut(df_data):
+   
+    
+    filtered_data = product_sales if department_filter == 'All' else [df_data['Group Name'] == department_filter]
+
+    total_projects = len(filtered_data[filtered_data['Received Project'].notnull()])
+    yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
+    conversion_rate = (yes_projects / total_projects) * 100 if total_projects > 0 else 0
+
+    return make_donut(conversion_rate, 'Conversion Rate', 'blue')
 
 # def calculate_population_difference(input_df, input_year):
 #   selected_year_data = input_df[input_df['year'] == input_year].reset_index()
@@ -136,7 +149,7 @@ def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
 
 col = st.columns((1.5, 2.5, 2), gap='medium')
 
-# with col[0]:
+with col[0]:
 #     st.markdown('#### Gains/Losses')
 
 
@@ -165,7 +178,9 @@ col = st.columns((1.5, 2.5, 2), gap='medium')
 #     st.metric(label=last_state_name, value=last_state_population, delta=last_state_delta)
 
 
-#     st.markdown('#### States Migration')
+     st.markdown('#### Conversion rate ')
+     st.markdown('### Sales Donut Chart')
+     st.altair_chart(sales_donut(df_data), use_container_width=True)
 
 #     if selected_year > 2010:
 #         # Filter states with population difference > 50000
@@ -184,12 +199,12 @@ col = st.columns((1.5, 2.5, 2), gap='medium')
 #         donut_chart_greater = make_donut(states_migration_greater, 'Inbound Migration', 'green')
 #         donut_chart_less = make_donut(states_migration_less, 'Outbound Migration', 'red')
 
-#     migrations_col = st.columns((0.2, 1, 0.2))
-#     with migrations_col[1]:
-#         st.write('Inbound')
-#         st.altair_chart(donut_chart_greater)
-#         st.write('Outbound')
-#         st.altair_chart(donut_chart_less)
+    migrations_col = st.columns((0.2, 1, 0.2))
+    with migrations_col[1]:
+        st.write('Inbound')
+        st.altair_chart(donut_chart_greater)
+        st.write('Outbound')
+        st.altair_chart(donut_chart_less)
 
 with col[1]:
     st.markdown("#### Total")
