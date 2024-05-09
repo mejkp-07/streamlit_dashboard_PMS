@@ -196,7 +196,7 @@ with col[1]:
     scatter = scatterplot(df_data,  'CDAC Outlay','Funding Organization', 'Group Name',selected_color_theme )
     st.altair_chart(scatter, use_container_width=True)
     
-    heatmap = make_heatmap(df_data,'str_category_name','Group Name', 'Group Name',selected_color_theme)
+    heatmap = make_heatmap(df_data,'Group Name','str_category_name', 'Group Name',selected_color_theme)
 
 
     st.altair_chart(heatmap, use_container_width=True)
