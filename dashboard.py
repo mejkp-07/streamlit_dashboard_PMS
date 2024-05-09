@@ -30,7 +30,7 @@ with st.sidebar:
   year_list= st.selectbox('Select the duartion',df_data['Duration'].unique())
   receival =  st.selectbox('Reveival of project',df_data['Received Project'].unique())
   group_name = st.selectbox('Select the department',df_data['Group Name'].unique())
-  selected_department = st.sidebar.selectbox('Select Department', ['Overall'] + df['Group Name'].unique())
+  selected_department = st.sidebar.selectbox('Select Department', ['Overall'] + df_data['Group Name'].unique())
 
   color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
   selected_color_theme = st.selectbox('Select a color theme', color_theme_list)
