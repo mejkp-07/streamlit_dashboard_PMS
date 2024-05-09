@@ -139,7 +139,7 @@ def sales_donut(input_data):
     yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
     conversion_rate = (yes_projects / total_projects) * 100 if total_projects > 0 else 0
 
-    return donut_chart(conversion_rate, 'Conversion Rate', 'blue')
+    return sales_donut(conversion_rate, 'Conversion Rate', 'blue')
 
 # def calculate_population_difference(input_df, input_year):
 #   selected_year_data = input_df[input_df['year'] == input_year].reset_index()
