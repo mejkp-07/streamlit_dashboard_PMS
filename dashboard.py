@@ -130,10 +130,10 @@ def donut_chart(input_response,input_text,input_color):
   ).properties(width=130, height=130)
   return plot_bg + plot + text
 
-def sales_donut(df_data):
+def sales_donut(input_data):
    
     
-    filtered_data = product_sales if department_filter == 'All' else [df_data['Group Name'] == department_filter]
+    filtered_data = input_data if department_filter == 'All' else [input_data['Group Name'] == department_filter]
 
     total_projects = len(filtered_data[filtered_data['Received Project'].notnull()])
     yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
@@ -178,9 +178,7 @@ with col[0]:
 #     st.metric(label=last_state_name, value=last_state_population, delta=last_state_delta)
 
 
-     st.markdown('#### Conversion rate ')
-     st.markdown('### Sales Donut Chart')
-     st.altair_chart(sales_donut(df_data), use_container_width=True)
+    
 
 #     if selected_year > 2010:
 #         # Filter states with population difference > 50000
@@ -201,10 +199,13 @@ with col[0]:
 
 migrations_col = st.columns((0.2, 1, 0.2))
 with migrations_col[1]:
-        st.write('Inbound')
-        st.altair_chart(donut_chart_greater)
-        st.write('Outbound')
-        st.altair_chart(donut_chart_less)
+     st.markdown('#### Conversion rate ')
+     st.markdown('### Sales Donut Chart')
+     st.altair_chart(sales_donut(df_data), use_container_width=True)
+        # st.write('Inbound')
+        # st.altair_chart(donut_chart_greater)
+        # st.write('Outbound')
+        # st.altair_chart(donut_chart_less)
 
 with col[1]:
     st.markdown("#### Total")
