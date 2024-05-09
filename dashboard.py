@@ -66,7 +66,7 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
 
 def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
     
-    df_counts = input_df.groupby([input_y, input_x]).size().reset_index(name='count')
+    df_counts = input_df.groupby([input_x, input_y]).size().reset_index(name='sum')
     horizon = alt.Chart(df_counts).mark_circle(
       size = 80,
   ).encode(
