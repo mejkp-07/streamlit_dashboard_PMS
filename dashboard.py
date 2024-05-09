@@ -38,7 +38,7 @@ with st.sidebar:
   if selected_department == 'Overall':
      df_filtered = df_data
   else:
-     df_filtered = df[df['department'] == selected_department]
+     df_filtered = df_data[df_data['Group Name'] == selected_department]
 
 
 """PLOTS"""
