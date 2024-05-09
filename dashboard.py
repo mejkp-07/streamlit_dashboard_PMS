@@ -70,13 +70,13 @@ def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
      tooltip=['Group Name','Received Project','Duration','Funding Organisation']
 
 
-      ).properties(
+      ).interactive().properties(
           width = 1100,
           # height = 90
       ).configure_axis(
           labelFontSize=12,
           titleFontSize=12
-      ).interactive()
+      )
 
     return horizon
 
