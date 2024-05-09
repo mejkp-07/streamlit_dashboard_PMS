@@ -67,7 +67,7 @@ def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
       color = alt.Color(f'{input_color}:N',
                         legend =None,
                         scale= alt.Scale(scheme= input_color_theme)),
-      tooltip =['Group Name','Duration','Received Project']
+    
 
 
       ).properties(
@@ -76,7 +76,7 @@ def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
       ).configure_axis(
           labelFontSize=12,
           titleFontSize=12
-      ).interactive()
+      )
 
     return horizon
 
