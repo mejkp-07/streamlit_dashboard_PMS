@@ -110,12 +110,12 @@ def donut_chart(input_data,input_color):
     if input_color == 'red':
      chart_color = ['#E743C','#781F16']
 
-  source = pd.DataFrame({
+    source = pd.DataFrame({
       "Topic":['Conversion_rate','Remaining'],
       "% value":[conversion_rate,100-conversion_rate]
   })
 
-  plot = alt.Chart(source).mark_arc(innerRadius=45, cornerRadius=25).encode(
+   plot = alt.Chart(source).mark_arc(innerRadius=45, cornerRadius=25).encode(
       theta="% value",
       color= alt.Color("Topic:",
                       scale=alt.Scale(
@@ -131,7 +131,7 @@ def donut_chart(input_data,input_color):
         strokeWidth=0
     )
 
-  return plot
+   return plot
 
  
 
