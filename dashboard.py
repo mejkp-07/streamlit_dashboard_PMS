@@ -101,14 +101,14 @@ def donut_chart(input_data,input_color):
     yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
     conversion_rate = (yes_projects / total_projects) * 100 if total_projects > 0 else 0
     
-  if input_color == 'blue':
-    chart_color = ['#29b5e8','#155F7A']
-  if input_color == 'green':
-    chart_color = ['#27AE60','#12783D']
-  if chart_color == 'orange':
-    chart_color = ['#F39C12','#875A12']
-  if input_color == 'red':
-    chart_color = ['#E743C','#781F16']
+    if input_color == 'blue':
+     chart_color = ['#29b5e8','#155F7A']
+    if input_color == 'green':
+     chart_color = ['#27AE60','#12783D']
+    if chart_color == 'orange':
+     chart_color = ['#F39C12','#875A12']
+    if input_color == 'red':
+     chart_color = ['#E743C','#781F16']
 
   source = pd.DataFrame({
       "Topic":['Conversion_rate','Remaining'],
