@@ -92,7 +92,7 @@ def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
     return horizon
 
 #Donut chart
-def donut_chart(input_data,input_color):
+def donut_chart(input_data,department_filter,input_color):
     
    
     filtered_data = input_data if department_filter == 'All' else [input_data['Group Name'] == department_filter]
@@ -131,7 +131,14 @@ def donut_chart(input_data,input_color):
      ).configure_view(
         strokeWidth=0
      )
-    return plot
+    text = plot.mark_text(align='center', color=chart_color[0], font="Lato", fontSize=32, fontWeight=700, fontStyle="italic").encode(
+        text=alt.value(f'{conversion_rate:.2f} %')
+    )
+
+    return plot + text
+
+
+    
 
  
 
@@ -197,7 +204,7 @@ with col[0]:
     # migrations_col = st.columns((0.2, 1, 0.2))
     # with migrations_col[1]:
     st.markdown('#### Conversion rate ')
-    donut = donut_chart(df_data,'green')
+    donut = donut_chart(df_data,department_filter,'blue')
     st.altair_chart(donut, use_container_width = True )
          
          
