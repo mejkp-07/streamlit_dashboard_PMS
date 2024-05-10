@@ -31,7 +31,7 @@ with st.sidebar:
   receival =  st.selectbox('Reveival of project',df_data['Received Project'].unique())
   # group_name = st.selectbox('Select the department',df_data['Group Name'].unique())
   # selected_department = st.sidebar.selectbox('Select Department', ['Overall'] + df_data['Group Name'].unique())
-  department_filter = st.selectbox('Select Department', ['All'] +list( df_data['Group Name'].unique()))
+  department_filter = st.selectbox('Select Department', ['All'] +( df_data['Group Name'].unique()))
 
 
   color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
@@ -202,7 +202,7 @@ with col[0]:
 #         donut_chart_less = make_donut(states_migration_less, 'Outbound Migration', 'red')
 #   department_filter = st.sidebar.selectbox('Select Department', ['All'] + list(input_data['Group Name'].unique()))
     
-    filtered_data =  df_data if department_filter =='ALL' else[ df_data['Group Name'] == department_filter]
+    filtered_data =  df_data if department_filter =='ALL' else df_data[df_data['Group Name'] == department_filter]
     total_projects = len(filtered_data[filtered_data['Received Project'].notnull()])
     yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
     conversion_rate = (yes_projects / total_projects) * 100 if total_projects > 0 else 0
