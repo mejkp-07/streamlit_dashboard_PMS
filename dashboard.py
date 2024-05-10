@@ -198,7 +198,7 @@ with col[0]:
     # with migrations_col[1]:
     st.markdown('#### Conversion rate ')
     donut = donut_chart(df_data,'green')
-    st.alatir_chart(donut, use_container_width = True )
+    st.altair_chart(donut, use_container_width = True )
          
          
          # st.altair_chart(sales_donut(df_data), use_container_width=True)
