@@ -31,7 +31,7 @@ with st.sidebar:
   receival =  st.selectbox('Reveival of project',df_data['Received Project'].unique())
   group_name = st.selectbox('Select the department',df_data['Group Name'].unique())
   # selected_department = st.sidebar.selectbox('Select Department', ['Overall'] + df_data['Group Name'].unique())
-  # department_filter = st.sidebar.selectbox('Select Department', ['All'] + list(df_data['Group Name'].unique()))
+  department_filter = st.sidebar.selectbox('Select Department', ['All'] + list(df_data['Group Name'].unique()))
 
 
   color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
@@ -194,11 +194,11 @@ with col[0]:
 #         donut_chart_greater = make_donut(states_migration_greater, 'Inbound Migration', 'green')
 #         donut_chart_less = make_donut(states_migration_less, 'Outbound Migration', 'red')
 
-    migrations_col = st.columns((0.2, 1, 0.2))
-    with migrations_col[1]:
-         st.markdown('#### Conversion rate ')
-         donut = donut_chart(df_data,'green')
-         st.alatir_chart(donut, use_container_width = True )
+    # migrations_col = st.columns((0.2, 1, 0.2))
+    # with migrations_col[1]:
+    st.markdown('#### Conversion rate ')
+    donut = donut_chart(df_data,'green')
+    st.alatir_chart(donut, use_container_width = True )
          
          
          # st.altair_chart(sales_donut(df_data), use_container_width=True)
