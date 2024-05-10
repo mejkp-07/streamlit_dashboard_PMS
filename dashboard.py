@@ -124,7 +124,8 @@ def donut_chart(input_data,input_color):
                           # range=['#29b5e8', '#155F7A']),  # 31333F
                           range=chart_color),
                       legend=None),
-   ).properties(width=130, height=130).
+   ).properties(width=130, 
+                height=130
    ).configure_mark(
         opacity=0.6
      ).configure_view(
