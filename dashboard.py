@@ -95,7 +95,7 @@ def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
 def donut_chart(input_data,filter,input_color):
     
     # department_filter = st.sidebar.selectbox('Select Department', ['All'] + list(input_data['Group Name'].unique()))
-    filtered_data = input_data if department_filter == 'All' else [input_data['Group Name'] == department_filter]
+    filtered_data = input_data if filter == 'All' else [input_data['Group Name'] == filter]
 
     total_projects = len(filtered_data[filtered_data['Received Project'].notnull()])
     yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
