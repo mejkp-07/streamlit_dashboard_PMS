@@ -116,22 +116,21 @@ def donut_chart(input_data,input_color):
   })
 
    plot = alt.Chart(source).mark_arc(innerRadius=45, cornerRadius=25).encode(
-      theta="% value",
-      color= alt.Color("Topic:",
-                      scale=alt.Scale(
+       theta="% value",
+       color= alt.Color("Topic:",
+                       scale=alt.Scale(
                           #domain=['A', 'B'],
                           domain=[input_text, ''],
                           # range=['#29b5e8', '#155F7A']),  # 31333F
                           range=chart_color),
                       legend=None),
-  ).properties(width=130, height=130).
-  ).configure_mark(
+   ).properties(width=130, height=130).
+   ).configure_mark(
         opacity=0.6
-    ).configure_view(
+     ).configure_view(
         strokeWidth=0
-    )
-
-   return plot
+     )
+    return plot
 
  
 
