@@ -31,7 +31,7 @@ with st.sidebar:
   receival =  st.selectbox('Reveival of project',df_data['Received Project'].unique())
   group_name = st.selectbox('Select the department',df_data['Group Name'].unique())
   # selected_department = st.sidebar.selectbox('Select Department', ['Overall'] + df_data['Group Name'].unique())
-  department_filter = st.sidebar.selectbox('Select Department', ['All'] + list(df_data['Group Name'].unique()))
+  # department_filter = st.sidebar.selectbox('Select Department', ['All'] + list(df_data['Group Name'].unique()))
 
 
   color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
@@ -92,7 +92,14 @@ def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
     return horizon
 
 #Donut chart
-def donut_chart(input_response,input_text,input_color):
+def donut_chart(input_data,input_color):
+    
+   
+    filtered_data = input_data if department_filter == 'All' else [input_data['Group Name'] == department_filter]
+
+    total_projects = len(filtered_data[filtered_data['Received Project'].notnull()])
+    yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
+    conversion_rate = (yes_projects / total_projects) * 100 if total_projects > 0 else 0
     
   if input_color == 'blue':
     chart_color = ['#29b5e8','#155F7A']
@@ -104,42 +111,32 @@ def donut_chart(input_response,input_text,input_color):
     chart_color = ['#E743C','#781F16']
 
   source = pd.DataFrame({
-      "Topic":['',input_text],
-      "% value":[100-input_response,input_response]
+      "Topic":['Conversion_rate','Remaining'],
+      "% value":[conversion_rate,100-conversion_rate]
   })
 
   plot = alt.Chart(source).mark_arc(innerRadius=45, cornerRadius=25).encode(
       theta="% value",
-      color= alt.Color("Topic:N",
+      color= alt.Color("Topic:",
                       scale=alt.Scale(
                           #domain=['A', 'B'],
                           domain=[input_text, ''],
                           # range=['#29b5e8', '#155F7A']),  # 31333F
                           range=chart_color),
                       legend=None),
-  ).properties(width=130, height=130)
+  ).properties(width=130, height=130).
+  ).configure_mark(
+        opacity=0.6
+    ).configure_view(
+        strokeWidth=0
+    )
 
-  text = plot.mark_text(align='center', color="#29b5e8", font="Lato", fontSize=32, fontWeight=700, fontStyle="italic").encode(text=alt.value(f'{input_response} %'))
-  plot_bg = alt.Chart(source_bg).mark_arc(innerRadius=45, cornerRadius=20).encode(
-      theta="% value",
-      color= alt.Color("Topic:N",
-                      scale=alt.Scale(
-                          # domain=['A', 'B'],
-                          domain=[input_text, ''],
-                          range=chart_color),  # 31333F
-                      legend=None),
-  ).properties(width=130, height=130)
-  return plot_bg + plot + text
+  return plot
 
-def sales_donut(input_data):
-   
-    filtered_data = input_data if department_filter == 'All' else [input_data['Group Name'] == department_filter]
+ 
 
-    total_projects = len(filtered_data[filtered_data['Received Project'].notnull()])
-    yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
-    conversion_rate = (yes_projects / total_projects) * 100 if total_projects > 0 else 0
+  
 
-    return sales_donut(conversion_rate, 'Conversion Rate', 'blue')
 
 # def calculate_population_difference(input_df, input_year):
 #   selected_year_data = input_df[input_df['year'] == input_year].reset_index()
@@ -200,8 +197,11 @@ with col[0]:
     migrations_col = st.columns((0.2, 1, 0.2))
     with migrations_col[1]:
          st.markdown('#### Conversion rate ')
-         st.markdown('### Sales Donut Chart')
-         st.altair_chart(sales_donut(df_data), use_container_width=True)
+         donut = donut_chart(df_data,'green')
+         st.alatir_chart(donut, use_container_width = True )
+         
+         
+         # st.altair_chart(sales_donut(df_data), use_container_width=True)
         # st.write('Inbound')
         # st.altair_chart(donut_chart_greater)
         # st.write('Outbound')
