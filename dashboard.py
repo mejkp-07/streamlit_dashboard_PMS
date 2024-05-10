@@ -202,7 +202,7 @@ with col[0]:
 #         donut_chart_less = make_donut(states_migration_less, 'Outbound Migration', 'red')
 #   department_filter = st.sidebar.selectbox('Select Department', ['All'] + list(input_data['Group Name'].unique()))
     
-    filtered_data =  df_data if filtered_data =='ALL' else[ df_data['Group Name'] == department_filter]
+    filtered_data =  df_data if department_filter =='ALL' else[ df_data['Group Name'] == department_filter]
     total_projects = len(filtered_data[filtered_data['Received Project'].notnull()])
     yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
     conversion_rate = (yes_projects / total_projects) * 100 if total_projects > 0 else 0
