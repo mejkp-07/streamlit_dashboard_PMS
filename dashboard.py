@@ -29,7 +29,7 @@ with st.sidebar:
   st.title('PMS analytics dashboard ')
   year_list= st.selectbox('Select the duartion',df_data['Duration'].unique())
   receival =  st.selectbox('Reveival of project',df_data['Received Project'].unique())
-  group_name = st.selectbox('Select the department',df_data['Group Name'].unique())
+  # group_name = st.selectbox('Select the department',df_data['Group Name'].unique())
   # selected_department = st.sidebar.selectbox('Select Department', ['Overall'] + df_data['Group Name'].unique())
   department_filter = st.sidebar.selectbox('Select Department', ['All'] + df_data['Group Name'].unique())
 
