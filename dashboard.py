@@ -120,7 +120,7 @@ def donut_chart(input_data,input_color):
         color= alt.Color("Topic:",
                        scale=alt.Scale(
                           #domain=['A', 'B'],
-                          domain=[input_text, ''],
+                          domain=["Conversion_rate, 'Remaining'],
                           # range=['#29b5e8', '#155F7A']),  # 31333F
                           range=chart_color),
                       legend=None),
