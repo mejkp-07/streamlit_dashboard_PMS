@@ -31,7 +31,7 @@ with st.sidebar:
   receival =  st.selectbox('Reveival of project',df_data['Received Project'].unique())
   group_name = st.selectbox('Select the department',df_data['Group Name'].unique())
   # selected_department = st.sidebar.selectbox('Select Department', ['Overall'] + df_data['Group Name'].unique())
-  department_filter = st.sidebar.selectbox('Select Department', ['All'] + list(df_data['Group Name'].unique()))
+  # department_filter = st.sidebar.selectbox('Select Department', ['All'] + list(df_data['Group Name'].unique()))
 
 
   color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
@@ -95,7 +95,7 @@ def scatterplot(input_df, input_x, input_y,input_color, input_color_theme):
 def donut_chart(input_data,filter,input_color):
     
     # department_filter = st.sidebar.selectbox('Select Department', ['All'] + list(input_data['Group Name'].unique()))
-    filtered_data = input_data if filter == 'All' else [input_data['Group Name'] == filter]
+    filtered_data =  input_data['Group Name'] == filter
 
     total_projects = len(filtered_data[filtered_data['Received Project'].notnull()])
     yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
@@ -205,7 +205,7 @@ with col[0]:
     # with migrations_col[1]:
     # department_filter = st.sidebar.selectbox('Select Department', ['All'] + list(df_data['Group Name'].unique()))
     st.markdown('#### Conversion rate ')
-    donut = donut_chart(df_data,department_filter,'blue')
+    donut = donut_chart(df_data,group_name,'blue')
     st.altair_chart(donut, use_container_width = True )
          
          
