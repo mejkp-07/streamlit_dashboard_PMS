@@ -131,11 +131,11 @@ def donut_chart(input_data,department_filter,input_color):
      ).configure_view(
         strokeWidth=0
      )
-    text = plot.mark_text(align='center', color=chart_color[0], font="Lato", fontSize=32, fontWeight=700, fontStyle="italic").encode(
-        text=alt.value(f'{conversion_rate:.2f} %')
-    )
+    # text = plot.mark_text(align='center', color=chart_color[0], font="Lato", fontSize=32, fontWeight=700, fontStyle="italic").encode(
+    #     text=alt.value(f'{conversion_rate:.2f} %')
+    # )
 
-    return plot + text
+    return plot 
 
 
     
