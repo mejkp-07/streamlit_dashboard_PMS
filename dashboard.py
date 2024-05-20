@@ -92,8 +92,8 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
 #     return horizon
 def barchart(input_df, input_x, input_y,input_color, input_color_theme):
     
-    # df_counts = input_df.groupby([input_y, input_x]).size().reset_index(name='count')
-    barchart = alt.Chart(input_df).mark_bar(
+    df_counts = input_df.groupby([input_y, input_x]).size().reset_index(name='count')
+    barchart = alt.Chart(df_counts).mark_bar(
       cornerRadiusTopLeft=3,
     cornerRadiusTopRight=3
   ).encode(
