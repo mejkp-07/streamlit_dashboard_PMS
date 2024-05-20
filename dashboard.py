@@ -47,11 +47,21 @@ with st.sidebar:
 
 # Heatmap
 def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
-    df_counts = input_df.groupby([input_y, input_x],'Received Project').size().reset_index(name='count')
+    input_df[input_x] = input_df[input_x].astype(str)
+    input_df[input_y] = input_df[input_y].astype(str)
+    input_df[input_color] = input_df[input_color].astype(str)
+    input_df['Received Project'] = input_df['Received Project'].astype(str)
+    
+    # Filter for "yes" values in the "Received Project" column
+    filtered_df = input_df[input_df['Received Project'] == 'yes']
+    
+    # Group by input_y and input_x to count occurrences of "yes"
+    df_counts = filtered_df.groupby([input_y, input_x]).size().reset_index(name='count')
+    # df_counts = input_df.groupby([input_y, input_x],'Received Project').size().reset_index(name='count')
     heatmap = alt.Chart(df_counts).mark_rect().encode(
             y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="received project ", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
             x=alt.X(f'{input_x}:O', axis=alt.Axis(title=" ", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
-            color=alt.Color(f'max({input_color}):N',
+            color=alt.Color(f'max({input_color}):Q',
                              legend=None,
                              scale=alt.Scale(scheme=input_color_theme)),
             stroke=alt.value('black'),
