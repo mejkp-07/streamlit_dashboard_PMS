@@ -103,7 +103,7 @@ def barchart(input_df, input_x, input_y,input_color, input_color_theme):
     cornerRadiusTopRight=3
   ).encode(
       y=alt.Y(f'{input_y}:O',axis = alt.Axis(title =" funding organisation ", titleFontSize=18, titlePadding = 15, titleFontWeight=900,labelAngle=0)),
-      x=alt.X(f'{input_x}:Q',axis = alt.Axis(title =" Cdac Outlay ",titleFontSize=18, titlePadding=15, titleFontWeight=900)),
+      x=alt.X(f'{input_x}:O',axis = alt.Axis(title =" Cdac Outlay ",titleFontSize=18, titlePadding=15, titleFontWeight=900)),
       color = alt.Color(f'{input_color}:N',
                         legend =None,
                         scale= alt.Scale(scheme= input_color_theme)),
