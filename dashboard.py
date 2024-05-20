@@ -273,7 +273,7 @@ with col[0]:
 
 with col[1]:
     st.markdown("#### Total")
-    bar = barchart(df_data,'CDAC Outlay','Funding Organization', 'Group Name',selected_color_theme )
+    bar = barchart(df_data,'Funding Organization','CDAC Outlay', 'Group Name',selected_color_theme )
     st.altair_chart(bar, use_container_width=True)
 
     st.markdown('#### Projects in each category')
