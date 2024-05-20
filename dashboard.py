@@ -47,7 +47,7 @@ with st.sidebar:
 
 # Heatmap
 def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
-    df_counts = input_df.groupby([input_y, input_x]).size().reset_index(name='count')
+    df_counts = input_df.groupby([input_y, input_x],'Received Project').size().reset_index(name='count')
     heatmap = alt.Chart(df_counts).mark_rect().encode(
             y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="received project ", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
             x=alt.X(f'{input_x}:O', axis=alt.Axis(title=" ", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
@@ -262,7 +262,7 @@ with col[0]:
 
 with col[1]:
     st.markdown("#### Total")
-    bar = barchart(df_data,  'CDAC Outlay','Funding Organization', 'Group Name',selected_color_theme )
+    bar = barchart(df_data,'CDAC Outlay','Funding Organization', 'Group Name',selected_color_theme )
     st.altair_chart(bar, use_container_width=True)
 
     st.markdown('#### Projects in each category')
