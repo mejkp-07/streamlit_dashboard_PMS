@@ -268,7 +268,7 @@ with col[1]:
 
 
 
- with col[2]:
+with col[2]:
     st.markdown('#### Projects vs CDAC outlay ')
     bar = barchart(df_data,  'CDAC Outlay','Funding Organization', 'Group Name',selected_color_theme )
     st.altair_chart(bar, use_container_width=True)
