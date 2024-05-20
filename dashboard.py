@@ -47,6 +47,9 @@ with st.sidebar:
 
 # Heatmap
 def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
+    input_df[input_x] = input_df[input_x].astype(str)
+    input_df[input_y] = input_df[input_y].astype(str)
+    input_df['Received Project'] = input_df['Received Project'].astype(str)
   
     # Filter for "yes" values in the "Received Project" column
     filtered_df = input_df[input_df['Received Project'] == 'yes']
