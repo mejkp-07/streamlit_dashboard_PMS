@@ -123,8 +123,8 @@ def barchart(input_df, input_x, input_y,input_color, input_color_theme):
 
       ).interactive(
     ).properties(
-          width = 1100,
-          # height = 90
+          width = 1500,
+           height = 90
       ).configure_axis(
           labelFontSize=12,
           titleFontSize=12
