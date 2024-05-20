@@ -116,7 +116,9 @@ def barchart(input_df, input_x, input_y,input_color, input_color_theme):
       color = alt.Color(f'{input_color}:N',
                         legend =None,
                         scale= alt.Scale(scheme= input_color_theme)),
-      tooltip=['Group Name','Duration']
+      tooltip=[alt.Tooltip(f'{input_y}:N', title='CDAC Outlay'),
+                 alt.Tooltip(f'{input_x}:N', title='Funding organisation'),
+                 ]
 
 
       ).interactive(
