@@ -52,7 +52,7 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
     # input_df['Received Project'] = input_df['Received Project'].astype(str)
   
     # Filter for "yes" values in the "Received Project" column
-    filtered_df = input_df[input_df['Received Project'] == 'yes']
+    filtered_df = input_df[input_df['Received Project'] == 'Yes']
     
     # Group by input_y and input_x to count occurrences of "yes"
     df_counts = filtered_df.groupby([input_y, input_x]).size().reset_index(name='count')
@@ -123,8 +123,8 @@ def barchart(input_df, input_x, input_y,input_color, input_color_theme):
 
       ).interactive(
     ).properties(
-          width = 1500,
-           height = 90
+          width = 1200,
+           height = 30
       ).configure_axis(
           labelFontSize=12,
           titleFontSize=12
