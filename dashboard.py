@@ -60,7 +60,7 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
     heatmap = alt.Chart(df_counts).mark_rect().encode(
             y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="received project ", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
             x=alt.X(f'{input_x}:O', axis=alt.Axis(title=" ", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
-            color=alt.Color(f'max({input_color}):Q',
+            color=alt.Color(f'max({input_color}):N',
                              legend=None,
                              scale=alt.Scale(scheme=input_color_theme)),
             stroke=alt.value('black'),
@@ -124,7 +124,7 @@ def barchart(input_df, input_x, input_y,input_color, input_color_theme):
       ).interactive(
     ).properties(
           width = 1200,
-           height = 30
+           # height = 30
       ).configure_axis(
           labelFontSize=12,
           titleFontSize=12
