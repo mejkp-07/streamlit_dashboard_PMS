@@ -289,7 +289,7 @@ with col[0]:
     yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
     conversion_rate = (yes_projects / total_projects) * 100 if total_projects > 0 else 0
     donut_conversion = donut_chart(conversion_rate,'converted','green')
-    non_conversion = (1-((yes_projects/total_projects))*100 if total_projects>0 else 0 
+    non_conversion = (1-(yes_projects/total_projects))*100 if total_projects>0 else 0 
     not_converted =  donut_chart(non_conversion ,'not converted','blue')
     migrations_col = st.columns((0.7, 1, 0.8))
     with migrations_col[1]:
