@@ -296,7 +296,7 @@ with col[0]:
         st.markdown('#### Conversion rate ')
         st.write('Proposal to Project conersion')
         st.altair_chart(donut_conversion)
-        st.write('#####Not Converted rate ')
+        st.write('Not Converted rate ')
         st.altair_chart(not_converted)
     
     
