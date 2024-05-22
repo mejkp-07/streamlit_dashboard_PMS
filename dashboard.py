@@ -322,7 +322,7 @@ with col[1]:
     st.altair_chart(bar, use_container_width=True)
 
     st.markdown('#### Projects in each category')
-    heatmap = make_heatmap(df_data,'Group Name','str_category_name', 'Group Name',selected_color_theme)
+    heatmap = make_heatmap(df_data,'str_category_name', 'Group Name','Group Name',selected_color_theme)
 
 
     st.altair_chart(heatmap, use_container_width=True)
