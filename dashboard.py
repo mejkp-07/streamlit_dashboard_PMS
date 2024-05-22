@@ -58,8 +58,8 @@ def make_heatmap(input_df, input_y, input_x, input_color, input_color_theme):
     df_counts = filtered_df.groupby([input_y, input_x]).size().reset_index(name='count')
     # df_counts = input_df.groupby([input_y, input_x],'Received Project').size().reset_index(name='count')
     heatmap = alt.Chart(df_counts).mark_rect().encode(
-            y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="received project ", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
-            x=alt.X(f'{input_x}:O', axis=alt.Axis(title=" ", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
+            y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="proposal category ", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
+            x=alt.X(f'{input_x}:O', axis=alt.Axis(title="Group name ", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
             color=alt.Color(f'max({input_color}):N',
                              legend=None,
                              scale=alt.Scale(scheme=input_color_theme)),
@@ -289,7 +289,8 @@ with col[0]:
     yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
     conversion_rate = (yes_projects / total_projects) * 100 if total_projects > 0 else 0
     donut_conversion = donut_chart(conversion_rate,'converted','green')
-    not_converted =  donut_chart(1-conversion_rate ,'not converted','orange')
+    non_conversion = (1-((yes_projects/total_projects))*100 if total_projects>0 else 0 
+    not_converted =  donut_chart(non_conversion ,'not converted','blue')
     migrations_col = st.columns((0.7, 1, 0.8))
     with migrations_col[1]:
         st.markdown('#### Conversion rate ')
