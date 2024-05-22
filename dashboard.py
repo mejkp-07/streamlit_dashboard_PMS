@@ -288,12 +288,15 @@ with col[0]:
     total_projects = len(filtered_data[filtered_data['Received Project'].notnull()])
     yes_projects = len(filtered_data[filtered_data['Received Project'] == 'Yes'])
     conversion_rate = (yes_projects / total_projects) * 100 if total_projects > 0 else 0
-    donut_conversion = donut_chart(conversion_rate,'Conversion_Rate','green')
-    migrations_col = st.columns((0.2, 1, 0.2))
+    donut_conversion = donut_chart(conversion_rate,'','green')
+    not_converted =  donut_chart(1-conversion_rate ,'','red')
+    migrations_col = st.columns((0.7, 1, 0.8))
     with migrations_col[1]:
         st.markdown('#### Conversion rate ')
         st.write('Proposal to Project conersion')
         st.altair_chart(donut_conversion)
+        st.write('#####Not Converted rate ')
+        st.altair_chart(not_converted)
     
     
 
