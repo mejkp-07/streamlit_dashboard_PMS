@@ -113,8 +113,8 @@ def barchart(input_df, input_x, input_y, input_color, input_color_theme, selecte
     sum_outlay_df = filtered_df.groupby([input_y, input_color])[input_x].sum().reset_index()
     
     # Create the bar chart
-    barchart = alt.Chart(sum_outlay_df).mark_line(
-        point=True
+    barchart = alt.Chart(sum_outlay_df).mark_bar(
+        
     ).encode(
         y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="Funding Organisation", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
         x=alt.X(f'{input_x}:N', axis=alt.Axis(title="CDAC Outlay", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
