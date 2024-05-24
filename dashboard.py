@@ -134,7 +134,7 @@ def barchart(input_df, input_x, input_y, input_color, input_color_theme, selecte
     return barchart
 
 
-def scatter_plot_with_regression(input_df, input_x, input_y,input_color_theme):
+def scatter_plot_with_regression(input_df, input_x, input_y,input_color_theme,input_color):
     input_df[input_x] = input_df[input_x].str.extract('(\d+)').astype(float)
     input_df[input_y] = input_df[input_y].str.extract('(\d+\.\d+)').astype(float)
     input_df = input_df.dropna(subset=[input_x, input_y])
@@ -367,7 +367,7 @@ with col[1]:
 
 with col[2]:
     st.markdown('#### Project duration trends  ')
-    scatter_chart = scatter_plot_with_regression(df_data, 'Duration', 'CDAC Outlay',selected_color_theme)
+    scatter_chart = scatter_plot_with_regression(df_data, 'Duration', 'CDAC Outlay',selected_color_theme,'Group Name')
     st.altair_chart(scatter_chart, use_container_width=True)
 #     bar = barchart(df_data,  'CDAC Outlay','Funding Organization', 'Group Name',selected_color_theme )
 #     st.altair_chart(bar, use_container_width=True)
