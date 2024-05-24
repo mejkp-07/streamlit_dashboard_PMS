@@ -135,8 +135,8 @@ def barchart(input_df, input_x, input_y, input_color, input_color_theme, selecte
 
 
 def scatter_plot_with_regression(input_df, input_x, input_y,input_color_theme):
-    input_df[input_x] = pd.to_numeric(input_df[input_x], errors='coerce')
-    input_df[input_y] = pd.to_numeric(input_df[input_y], errors='coerce')
+    input_df[input_x] = input_df[input_x].str.extract('(\d+)').astype(float)
+    
     input_df = input_df.dropna(subset=[input_x, input_y])
     # Prepare the data for the regression line
     X = input_df[input_x].values.reshape(-1, 1)
