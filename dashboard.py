@@ -144,7 +144,7 @@ def scatter_plot_with_regression(input_df, input_x, input_y):
     
     # Create the scatter plot
     scatter = alt.Chart(input_df).mark_circle(size=60).encode(
-        x=alt.X(f'{input_x}:O', title='Project Duration'),
+        x=alt.X(f'{input_x}:N', title='Project Duration'),
         y=alt.Y(f'{input_y}:N', title='CDAC Outlay'),
         tooltip=[input_x, input_y]
     ).properties(
@@ -157,9 +157,9 @@ def scatter_plot_with_regression(input_df, input_x, input_y):
     regression_line = alt.Chart(pd.DataFrame({
         input_x: input_df[input_x],
         'y_pred': y_pred
-    })).mark_line(color='orange').encode(
+    })).mark_line(color='red').encode(
         x=f'{input_x}:N',
-        y='y_pred:O'
+        y='y_pred:N'
     )
 
     return scatter + regression_line
