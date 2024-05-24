@@ -178,12 +178,12 @@ def scatter_plot_with_regression(input_df, input_x, input_y,input_color_theme,in
 def line_chart(input_df, input_x, input_y, input_color, input_color_theme):
 
     chart = alt.Chart(input_df).mark_line().encode(
-        y=alt.Y(f'{input_y}:Q', axis=alt.Axis(title="Duration ", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
+        y=alt.Y(f'{input_y}:N', axis=alt.Axis(title="Duration ", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
         x=alt.X(f'{input_x}:N', axis=alt.Axis(title="CDAC Outlay", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
     # size=alt.Size(f'{input_x}:N', legend=None, title="CDAC Outlay"),
         color=alt.Color(f'{input_color}:N', legend=None, scale=alt.Scale(scheme=input_color_theme)),
         order=alt.Order(f'sum({input_x}):N', sort='ascending'),
-        tooltip=[alt.Tooltip(f'{input_y}:Q', title='Duration'),
+        tooltip=[alt.Tooltip(f'{input_y}:N', title='Duration'),
                  alt.Tooltip(f'{input_x}:N', title='CDAC Outlay')]
     ).interactive().properties(
         width=1400
