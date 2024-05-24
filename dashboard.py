@@ -134,25 +134,25 @@ def barchart(input_df, input_x, input_y, input_color, input_color_theme, selecte
     return barchart
 
 
-def scatter_plot_with_regression(input_df, input_x, input_y):
-    input_df[input_x] = input_df[input_x].str.extract('(\d+)').astype(float)
-    input_df[input_y] = input_df[input_y].str.extract('(\d+\.\d+)').astype(float)
-    input_df = input_df.dropna(subset=[input_x, input_y])
-    
+def scatter_plot_with_regression(input_df, input_x, input_y,input_color,input_color_scheme):
+    # input_df[input_x] = input_df[input_x].str.extract('(\d+)').astype(float)
+    # input_df[input_y] = input_df[input_y].str.extract('(\d+\.\d+)').astype(float)
     # input_df = input_df.dropna(subset=[input_x, input_y])
-    # Prepare the data for the regression line
-    X = input_df[input_x].values.reshape(-1, 1)
-    y = input_df[input_y]
     
-    model = LinearRegression()
-    model.fit(X, y)
-    y_pred = model.predict(X)
+    # # input_df = input_df.dropna(subset=[input_x, input_y])
+    # # Prepare the data for the regression line
+    # X = input_df[input_x].values.reshape(-1, 1)
+    # y = input_df[input_y]
+    
+    # model = LinearRegression()
+    # model.fit(X, y)
+    # y_pred = model.predict(X)
     
     # Create the scatter plot
-    scatter = alt.Chart(input_df).mark_circle(size=60).encode(
+    scatter = alt.Chart(input_df).mark_boxplot(extent='min-max').encode(
         x=alt.X(f'{input_x}:N', title='Project Duration'),
         y=alt.Y(f'{input_y}:N', title='CDAC Outlay'),
-        # color=alt.Color(f'{input_color}:N', legend=None, scale=alt.Scale(scheme=input_color_theme)),
+        color=alt.Color(f'{input_color}:N', legend=None, scale=alt.Scale(scheme=input_color_theme)),
         order=alt.Order(f'sum({input_y}):N', sort='descending'),
         tooltip=[input_x, input_y]
     ).properties(
@@ -161,16 +161,16 @@ def scatter_plot_with_regression(input_df, input_x, input_y):
         # height=400
     )
 
-    # Create the regression line
-    line = alt.Chart(pd.DataFrame({
-        input_x: input_df[input_x],
-        'y_pred': y_pred
-    })).mark_line(color='red').encode(
-        x=f'{input_x}:N',
-        y=f'{input_y}:N'
+    # # Create the regression line
+    # line = alt.Chart(pd.DataFrame({
+    #     input_x: input_df[input_x],
+    #     'y_pred': y_pred
+    # })).mark_line(color='red').encode(
+    #     x=f'{input_x}:N',
+    #     y=f'{input_y}:N'
     )
-    scatter_with_regression = scatter + line
-    return scatter_with_regression
+    # scatter_with_regression = scatter + line
+    return scatter
 
 
 
@@ -392,8 +392,8 @@ with col[1]:
 with col[2]:
     st.markdown('#### Project duration trends  ')
     # chart = line_chart(df_data,'CDAC Outlay', 'Duration','Group Name',selected_color_theme)
-    scatter_chart = scatter_plot_with_regression(df_data, 'Duration', 'CDAC Outlay')
-    # scatter_chart = scatter_plot_with_regression(df_data, 'Duration', 'CDAC Outlay',selected_color_theme,'Duration')
+    # scatter_chart = scatter_plot_with_regression(df_data, 'Duration', 'CDAC Outlay')
+    scatter_chart = scatter_plot_with_regression(df_data, 'Duration', 'CDAC Outlay',selected_color_theme,'Duration')
     st.altair_chart(scatter_chart, use_container_width=True)
 #     bar = barchart(df_data,  'CDAC Outlay','Funding Organization', 'Group Name',selected_color_theme )
 #     st.altair_chart(bar, use_container_width=True)
