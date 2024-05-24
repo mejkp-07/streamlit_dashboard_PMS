@@ -134,7 +134,7 @@ def barchart(input_df, input_x, input_y, input_color, input_color_theme, selecte
     return barchart
 
 
-def scatter_plot_with_regression(input_df, input_x, input_y):
+def scatter_plot_with_regression(input_df, input_x, input_y,input_color_theme):
     # Prepare the data for the regression line
     X = input_df[input_x].values.reshape(-1, 1)
     y = input_df[input_y].values
@@ -146,6 +146,7 @@ def scatter_plot_with_regression(input_df, input_x, input_y):
     scatter = alt.Chart(input_df).mark_circle(size=60).encode(
         x=alt.X(f'{input_x}:N', title='Project Duration'),
         y=alt.Y(f'{input_y}:N', title='CDAC Outlay'),
+        color=alt.Color(f'{input_color}:N', legend=None, scale=alt.Scale(scheme=input_color_theme)),
         tooltip=[input_x, input_y]
     ).properties(
         title='Project Duration vs. CDAC Outlay',
