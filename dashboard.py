@@ -113,11 +113,12 @@ def barchart(input_df, input_x, input_y, input_color, input_color_theme, selecte
     sum_outlay_df = filtered_df.groupby([input_y, input_color])[input_x].sum().reset_index()
     
     # Create the bar chart
-    barchart = alt.Chart(sum_outlay_df).mark_bar(
+    barchart = alt.Chart(sum_outlay_df).mark_circle(
         
     ).encode(
         y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="Funding Organisation", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
         x=alt.X(f'{input_x}:N', axis=alt.Axis(title="CDAC Outlay", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
+        size=alt.Size(f'{input_x}:Q', legend=None, title="CDAC Outlay"),
         color=alt.Color(f'{input_color}:N', legend=None, scale=alt.Scale(scheme=input_color_theme)),
         order=alt.Order(f'sum({input_x}):N', sort='ascending'),
         tooltip=[alt.Tooltip(f'{input_y}:N', title='Funding Organisation'),
