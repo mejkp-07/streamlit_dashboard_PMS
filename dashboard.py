@@ -395,7 +395,7 @@ df_data['Number of Projects'] = df_data['Received Project'].apply(lambda x: 1 if
 df_data_filtered = df_data[df_data['Duration'] == duration_filter]
 
 # Group by 'Group Name' and calculate the sum of 'Number of Projects' for each group
-df_group_projects = df_selected_year_sorted_filtered.groupby('Group Name')['Number of Projects'].sum().reset_index()
+df_group_projects = df_data_filtered.groupby('Group Name')['Number of Projects'].sum().reset_index()
 df_group_projects_sorted = df_group_projects.sort_values('Number of Projects', ascending=False)
 
 
