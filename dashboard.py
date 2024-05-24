@@ -393,7 +393,7 @@ with col[2]:
     st.markdown('#### Project duration trends  ')
     # chart = line_chart(df_data,'CDAC Outlay', 'Duration','Group Name',selected_color_theme)
     # scatter_chart = scatter_plot_with_regression(df_data, 'Duration', 'CDAC Outlay')
-    scatter_chart = scatter_plot_with_regression(df_data, 'Duration', 'CDAC Outlay',selected_color_theme,'Duration')
+    scatter_chart = scatter_plot_with_regression(df_data, 'Duration', 'CDAC Outlay','Duration',selected_color_theme)
     st.altair_chart(scatter_chart, use_container_width=True)
 #     bar = barchart(df_data,  'CDAC Outlay','Funding Organization', 'Group Name',selected_color_theme )
 #     st.altair_chart(bar, use_container_width=True)
