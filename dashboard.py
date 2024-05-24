@@ -134,7 +134,7 @@ def barchart(input_df, input_x, input_y, input_color, input_color_theme, selecte
     return barchart
 
 
-def scatter_plot_with_regression(input_df, input_x, input_y,input_color,input_color_scheme):
+def scatter_plot_with_regression(input_df, input_x, input_y,input_color,input_color_theme):
     # input_df[input_x] = input_df[input_x].str.extract('(\d+)').astype(float)
     # input_df[input_y] = input_df[input_y].str.extract('(\d+\.\d+)').astype(float)
     # input_df = input_df.dropna(subset=[input_x, input_y])
