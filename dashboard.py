@@ -152,7 +152,7 @@ def scatter_plot_with_regression(input_df, input_x, input_y):
     scatter = alt.Chart(input_df).mark_circle(size=60).encode(
         x=alt.X(f'{input_x}:N', title='Project Duration'),
         y=alt.Y(f'{input_y}:N', title='CDAC Outlay'),
-        color=alt.Color(f'{input_color}:N', legend=None, scale=alt.Scale(scheme=input_color_theme)),
+        # color=alt.Color(f'{input_color}:N', legend=None, scale=alt.Scale(scheme=input_color_theme)),
         order=alt.Order(f'sum({input_y}):N', sort='descending'),
         tooltip=[input_x, input_y]
     ).properties(
