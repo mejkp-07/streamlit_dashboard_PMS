@@ -168,7 +168,7 @@ def scatter_plot_with_regression(input_df, input_x, input_y,input_color,input_co
     # })).mark_line(color='red').encode(
     #     x=f'{input_x}:N',
     #     y=f'{input_y}:N'
-    )
+    # )
     # scatter_with_regression = scatter + line
     return scatter
 
