@@ -388,7 +388,7 @@ with col[1]:
     st.altair_chart(heatmap, use_container_width=True)
 
 # Assuming df_selected_year_sorted contains data with columns 'Group Name', 'Received Project', and 'Duration'
-# Calculate the total number of projects where 'Received Project' is 'YES'
+# Calculate the total number of projects where 'Received Project' is 'Yes'
 df_data['Number of Projects'] = df_data['Received Project'].apply(lambda x: 1 if x == 'YES' else 0)
 
 # Apply the duration filter (assuming duration_filter is a variable containing the duration value)
