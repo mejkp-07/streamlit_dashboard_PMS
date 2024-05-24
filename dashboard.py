@@ -183,7 +183,7 @@ def line_chart(input_df, input_x, input_y, input_color, input_color_theme):
     # size=alt.Size(f'{input_x}:N', legend=None, title="CDAC Outlay"),
         color=alt.Color(f'{input_color}:N', legend=None, scale=alt.Scale(scheme=input_color_theme)),
         order=alt.Order(f'sum({input_x}):N', sort='ascending'),
-        tooltip=[alt.Tooltip(f'{input_y}:N', title='Duration'),
+        tooltip=[alt.Tooltip(f'{input_y}:Q', title='Duration'),
                  alt.Tooltip(f'{input_x}:N', title='CDAC Outlay')]
     ).interactive().properties(
         width=1400
