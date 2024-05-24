@@ -140,7 +140,10 @@ def scatter_plot_with_regression(input_df, input_x, input_y,input_color_theme):
     input_df = input_df.dropna(subset=[input_x, input_y])
     # Prepare the data for the regression line
     X = input_df[input_x].values.reshape(-1, 1)
-    y = input_df[input_y].values
+    y = input_df[input_y].
+    if len(X) == 0 or len(y) == 0:
+        st.error("Error: No valid data points found after cleaning the data.")
+        return None
     model = LinearRegression()
     model.fit(X, y)
     y_pred = model.predict(X)
