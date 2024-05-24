@@ -392,7 +392,7 @@ with col[1]:
 df_data['Number of Projects'] = df_data['Received Project'].apply(lambda x: 1 if x == 'YES' else 0)
 
 # Apply the duration filter (assuming duration_filter is a variable containing the duration value)
-df_data_filtered = df_data[df_data['Duration'] == duration_filter]
+df_data_filtered = df_data[df_data['Duration'] == year_list]
 
 # Group by 'Group Name' and calculate the sum of 'Number of Projects' for each group
 df_group_projects = df_data_filtered.groupby('Group Name')['Number of Projects'].sum().reset_index()
