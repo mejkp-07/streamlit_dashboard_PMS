@@ -11,6 +11,7 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import plotly.express as px
+from sklearn.linear_model import LinearRegression
 
 st.set_page_config(
     page_title = "PMS dashboard",
@@ -133,7 +134,35 @@ def barchart(input_df, input_x, input_y, input_color, input_color_theme, selecte
     return barchart
 
 
+def scatter_plot_with_regression(input_df, input_x, input_y):
+    # Prepare the data for the regression line
+    X = input_df[input_x].values.reshape(-1, 1)
+    y = input_df[input_y].values
+    model = LinearRegression()
+    model.fit(X, y)
+    y_pred = model.predict(X)
+    
+    # Create the scatter plot
+    scatter = alt.Chart(input_df).mark_circle(size=60).encode(
+        x=alt.X(f'{input_x}:O', title='Project Duration'),
+        y=alt.Y(f'{input_y}:N', title='CDAC Outlay'),
+        tooltip=[input_x, input_y]
+    ).properties(
+        title='Project Duration vs. CDAC Outlay',
+        width=800,
+        height=400
+    )
 
+    # Create the regression line
+    regression_line = alt.Chart(pd.DataFrame({
+        input_x: input_df[input_x],
+        'y_pred': y_pred
+    })).mark_line(color='orange').encode(
+        x=f'{input_x}:N',
+        y='y_pred:Q'
+    )
+
+    return scatter + regression_line
 
 
 
@@ -330,8 +359,10 @@ with col[1]:
 
 
 
-# with col[2]:
-#     st.markdown('#### Projects vs CDAC outlay ')
+with col[2]:
+    st.markdown('#### Project duration trends  ')
+    scatter_chart = scatter_plot_with_regression(df_data, 'Duration', 'CDAC_Outlay')
+    st.altair_chart(scatter_chart, use_container_width=True)
 #     bar = barchart(df_data,  'CDAC Outlay','Funding Organization', 'Group Name',selected_color_theme )
 #     st.altair_chart(bar, use_container_width=True)
      
