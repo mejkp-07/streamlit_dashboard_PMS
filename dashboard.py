@@ -175,24 +175,24 @@ def scatter_plot_with_regression(input_df, input_x, input_y,input_color_theme,in
 
 
 
-def line_chart(input_df, input_x, input_y, input_color, input_color_theme):
+# def line_chart(input_df, input_x, input_y, input_color, input_color_theme):
 
-    chart = alt.Chart(input_df).mark_line().encode(
-        y=alt.Y(f'{input_y}:N', axis=alt.Axis(title="Duration ", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
-        x=alt.X(f'{input_x}:N', axis=alt.Axis(title="CDAC Outlay", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
-    # size=alt.Size(f'{input_x}:N', legend=None, title="CDAC Outlay"),
-        color=alt.Color(f'{input_color}:N', legend=None, scale=alt.Scale(scheme=input_color_theme)),
-        order=alt.Order(f'sum({input_x}):N', sort='ascending'),
-        tooltip=[alt.Tooltip(f'{input_y}:N', title='Duration'),
-                 alt.Tooltip(f'{input_x}:N', title='CDAC Outlay')]
-    ).interactive().properties(
-        width=1400
-    ).configure_axis(
-        labelFontSize=12,
-        titleFontSize=12
-    )
+#     chart = alt.Chart(input_df).mark_line().encode(
+#         y=alt.Y(f'{input_y}:N', axis=alt.Axis(title="Duration ", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
+#         x=alt.X(f'{input_x}:N', axis=alt.Axis(title="CDAC Outlay", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
+#     # size=alt.Size(f'{input_x}:N', legend=None, title="CDAC Outlay"),
+#         color=alt.Color(f'{input_color}:N', legend=None, scale=alt.Scale(scheme=input_color_theme)),
+#         order=alt.Order(f'sum({input_x}):N', sort='ascending'),
+#         tooltip=[alt.Tooltip(f'{input_y}:N', title='Duration'),
+#                  alt.Tooltip(f'{input_x}:N', title='CDAC Outlay')]
+#     ).interactive().properties(
+#         width=1400
+#     ).configure_axis(
+#         labelFontSize=12,
+#         titleFontSize=12
+#     )
     
-    return chart
+#     return chart
 
 
 
@@ -391,9 +391,9 @@ with col[1]:
 
 with col[2]:
     st.markdown('#### Project duration trends  ')
-    chart = line_chart(df_data,'CDAC Outlay', 'Duration','Group Name',selected_color_theme)
-    # scatter_chart = scatter_plot_with_regression(df_data, 'Duration', 'CDAC Outlay',selected_color_theme,'Duration')
-    st.altair_chart(chart, use_container_width=True)
+    # chart = line_chart(df_data,'CDAC Outlay', 'Duration','Group Name',selected_color_theme)
+    scatter_chart = scatter_plot_with_regression(df_data, 'Duration', 'CDAC Outlay',selected_color_theme,'Duration')
+    st.altair_chart(scatter_chart, use_container_width=True)
 #     bar = barchart(df_data,  'CDAC Outlay','Funding Organization', 'Group Name',selected_color_theme )
 #     st.altair_chart(bar, use_container_width=True)
      
