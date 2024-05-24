@@ -135,6 +135,9 @@ def barchart(input_df, input_x, input_y, input_color, input_color_theme, selecte
 
 
 def scatter_plot_with_regression(input_df, input_x, input_y,input_color_theme):
+    input_df[input_x] = pd.to_numeric(input_df[input_x], errors='coerce')
+    input_df[input_y] = pd.to_numeric(input_df[input_y], errors='coerce')
+    input_df = input_df.dropna(subset=[input_x, input_y])
     # Prepare the data for the regression line
     X = input_df[input_x].values.reshape(-1, 1)
     y = input_df[input_y].values
@@ -151,20 +154,19 @@ def scatter_plot_with_regression(input_df, input_x, input_y,input_color_theme):
     ).properties(
         title='Project Duration vs. CDAC Outlay',
         width=800,
-        height=400
+        # height=400
     )
 
     # Create the regression line
-    regression_line = alt.Chart(pd.DataFrame({
+    line = alt.Chart(pd.DataFrame({
         input_x: input_df[input_x],
         'y_pred': y_pred
     })).mark_line(color='red').encode(
         x=f'{input_x}:N',
-        y='y_pred:N'
+        y=f'{input_y}:N'
     )
-
-    return scatter + regression_line
-
+    scatter_with_regression = scatter + line
+    return scatter_with_regression
 
 
 # def barchart(input_df, input_x, input_y,input_color, input_color_theme):
