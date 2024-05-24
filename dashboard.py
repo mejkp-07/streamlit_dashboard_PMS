@@ -138,7 +138,7 @@ def scatter_plot_with_regression(input_df, input_x, input_y,input_color_theme):
     input_df[input_x] = input_df[input_x].str.extract('(\d+)').astype(float)
     input_df = input_df.dropna(subset=[input_x, input_y])
     
-    input_df = input_df.dropna(subset=[input_x, input_y])
+    # input_df = input_df.dropna(subset=[input_x, input_y])
     # Prepare the data for the regression line
     X = input_df[input_x].values.reshape(-1, 1)
     y = input_df[input_y]
