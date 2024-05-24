@@ -118,7 +118,7 @@ def barchart(input_df, input_x, input_y, input_color, input_color_theme, selecte
     ).encode(
         y=alt.Y(f'{input_y}:O', axis=alt.Axis(title="Funding Organisation", titleFontSize=18, titlePadding=15, titleFontWeight=900, labelAngle=0)),
         x=alt.X(f'{input_x}:N', axis=alt.Axis(title="CDAC Outlay", titleFontSize=18, titlePadding=15, titleFontWeight=900)),
-        size=alt.Size(f'{input_x}:Q', legend=None, title="CDAC Outlay"),
+        size=alt.Size(f'{input_x}:N', legend=None, title="CDAC Outlay"),
         color=alt.Color(f'{input_color}:N', legend=None, scale=alt.Scale(scheme=input_color_theme)),
         order=alt.Order(f'sum({input_x}):N', sort='ascending'),
         tooltip=[alt.Tooltip(f'{input_y}:N', title='Funding Organisation'),
