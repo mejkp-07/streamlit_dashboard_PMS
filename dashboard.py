@@ -387,6 +387,16 @@ with col[1]:
 
     st.altair_chart(heatmap, use_container_width=True)
 
+# Assuming df_selected_year_sorted contains data with columns 'Group Name', 'Received Project', and 'Duration'
+# Calculate the total number of projects where 'Received Project' is 'YES'
+df_data['Number of Projects'] = df_data['Received Project'].apply(lambda x: 1 if x == 'YES' else 0)
+
+# Apply the duration filter (assuming duration_filter is a variable containing the duration value)
+df_data_filtered = df_data[df_data['Duration'] == duration_filter]
+
+# Group by 'Group Name' and calculate the sum of 'Number of Projects' for each group
+df_group_projects = df_selected_year_sorted_filtered.groupby('Group Name')['Number of Projects'].sum().reset_index()
+df_group_projects_sorted = df_group_projects.sort_values('Number of Projects', ascending=False)
 
 
 with col[2]:
@@ -397,7 +407,26 @@ with col[2]:
     st.altair_chart(scatter_chart, use_container_width=True)
 #     bar = barchart(df_data,  'CDAC Outlay','Funding Organization', 'Group Name',selected_color_theme )
 #     st.altair_chart(bar, use_container_width=True)
-     
+
+  
+    st.markdown('#### Progression bar ')
+
+    st.dataframe(df_group_projects_sorted,
+                 column_order=("Group Name", "Number of Projects"),
+                 hide_index=True,
+                 width=None,
+                 column_config={
+                    "Group Name": st.column_config.TextColumn(
+                        "Group Name",
+                    ),
+                    "Number of Projects": st.column_config.ProgressColumn(
+                        "Number of Projects",
+                        format="%d",
+                        min_value=0,
+                        max_value=max(df_group_projects_sorted['Number of Projects']),
+                     )}
+                 )
+
 
 #     st.dataframe(df_selected_year_sorted,
 #                  column_order=("states", "population"),
