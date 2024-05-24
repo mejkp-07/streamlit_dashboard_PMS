@@ -293,7 +293,7 @@ def donut_chart(input_data,input_text,input_color):
 #   selected_year_data['population_difference'] = selected_year_data.population.sub(previous_year_data.population, fill_value=0)
 #   return pd.concat([selected_year_data.states, selected_year_data.id, selected_year_data.population, selected_year_data.population_difference], axis=1).sort_values(by="population_difference", ascending=False)
 
-col = st.columns((2, 3, 2.5), gap='medium')
+col = st.columns((1.5, 2.5, 2), gap='medium')
 
 with col[0]:
 #     st.markdown('#### Gains/Losses')
@@ -351,7 +351,7 @@ with col[0]:
     donut_conversion = donut_chart(conversion_rate,'converted','green')
     non_conversion = (1-(yes_projects/total_projects))*100 if total_projects>0 else 0 
     not_converted =  donut_chart(non_conversion ,'not converted','blue')
-    migrations_col = st.columns((0.7, 1, 0.8))
+    migrations_col = st.columns((0.5, 1, 0.5))
     with migrations_col[1]:
         st.markdown('#### Conversion rate ')
         st.write('Proposal to Project conersion')
